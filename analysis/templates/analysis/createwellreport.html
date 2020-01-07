@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block body_block %}
+<h3>Choose a range of dates to analyze</h3>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <input type="submit" value="Analyze" class="btn btn-default">
+</form>
+{% if messages %}
+<h3><i>Errors:</i></h3>
+<pre>
+  {% for message in messages %}
+    {{ message }}
+  {% endfor %}
+</pre>
+{% endif %}
+{% endblock %}

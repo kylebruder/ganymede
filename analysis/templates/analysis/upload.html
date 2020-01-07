@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block body_block %}
+<h3>Upload csv files to analyze</h3>
+<ul>
+  <li>The csv files must use a comma as the delimiter.</li>
+  <li>The columns must follow the following header:<br>
+  Date/Time,Date,Time,Value,Quality Code,Interploation Type,Empty,tagComments
+  <li>The first row will not be read so please make sure your files contain a header as the first row</li>
+</ul> 
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <input type="submit" value="Analyze" class="btn btn-default">
+</form>
+{% if messages %}
+<h3><i>Errors:</i></h3>
+<pre>
+  {% for message in messages %}
+    {{ message }}
+  {% endfor %}
+</pre>
+{% endif %}
+{% endblock %}

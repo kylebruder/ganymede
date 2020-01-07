@@ -1,0 +1,13 @@
+# Python cache files
+*.pyc
+
+# Vim swaps
+*.sw*
+
+# Dev databases
+*.sqlite3
+
+*/migrations/*
+
+*/media/*
+media/*
