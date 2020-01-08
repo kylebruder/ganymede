@@ -12,6 +12,7 @@ from django.views.generic.edit import CreateView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.core.files.images import ImageFile
 from matplotlib import pyplot as plt
@@ -74,6 +75,14 @@ class WellReportListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         #context['now'] = timezone.now()
+        return context
+
+class WellReportDetailView(LoginRequiredMixin, DetailView):
+    model = WellReport
+    template_name = 'analysis/wellreport_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         return context
 
 class CreateWellReading(LoginRequiredMixin, CreateView):

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<div class="container">
+  <div class="jumbotron">
+    <h3>{{ object.title }}</h3>
+  </div>
+  <div class="container">
+    <p><i>This report was created by {{ object.user }} on {{ object.creation_date }}.</i></p>
+    <img src="/{{ object.graph }}"><br>
+    <p>Mean: {{ object.mean }} {{ object.unit }}</p>
+    <p>Minumum: {{ object.minimum }} {{ object.unit }}</p>
+    <p>Maxumium: {{ object.maximum }} {{ object.unit }}</p>
+    <p>Last: {{ object.last }} {{ object.unit }}</p>
+  </div>
+</div>  
+{% endblock %}

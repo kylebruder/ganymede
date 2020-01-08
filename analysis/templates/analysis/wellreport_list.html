@@ -4,17 +4,16 @@
   <div class="jumbotron">
     <h1>Well Reports</h1>
   </div>
-  {% for wellreport in object_list %}
-    <div class="container">
-      <h3>{{wellreport.title}}</h3>
-      <p><i>This report was created on {{ wellreport.creation_date }} by {{wellreport.user }}.</i></p>
-      <img src="/{{ wellreport.graph }}"><br>
-      <p>Mean: {{ wellreport.mean }} {{ wellreport.unit }}</p>
-      <p>Minumum: {{ wellreport.minimum }} {{ wellreport.unit }}</p>
-      <p>Maxumium: {{ wellreport.maximum }} {{ wellreport.unit }}</p>
-      <p>Last: {{ wellreport.last }} {{ wellreport.unit }}</p>
-      <hr>
-    </div>
-  {% endfor %}
-</div>  
+  <div class="container">
+    {% if object_list %}
+      <ul>
+        {% for wellreport in object_list %}
+          <li><a href="{{ wellreport.get_absolute_url }}">{{ wellreport.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+    <p>There are no reports yet.</p>
+    <p>Click <a href="{% url 'analysis:create_report' %}">here</a> to create reports</p>
+    {% endif %}
+  </div>  
 {% endblock %}

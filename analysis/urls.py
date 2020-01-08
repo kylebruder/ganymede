@@ -18,6 +18,10 @@ try:
             views.WellReportListView.as_view(),
             name='report_list'
         ),
+        path('reports/<int:pk>/',
+            views.WellReportDetailView.as_view(),
+            name='report_detail'
+        )
     ]
 except:
     urlpatterns = []

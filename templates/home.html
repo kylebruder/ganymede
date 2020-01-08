@@ -1,4 +1,55 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body_block %}
+{% if user.is_authenticated %}
+  <div class="container">
+    <div class="jumbotron">
+      <h3>Well Data Analysis</h3>
+    </div>
+    <div class="container">
+      <div class="card" style="width: 18rem;">
+        <!--<img src="{% static "enter_keyboard_computer_keys_technology_internet_business_office-935315.jpg" %}" class="card-img-top" alt="keyboard">-->
+        <div class="card-body">
+          <h5 class="card-title">Enter New Well data</h5>
+          <p class="card-text">Enter new readings for existing wells in the database.</p>
+          <a href="{% url 'analysis:enter_well_data' %}" class="btn btn-primary">Enter Data</a>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <!--<img src="{% static "2d14aca81666a470a529694a66c8-1455413.jpg" %}" class="card-img-top" alt="making a report">-->
+        <div class="card-body">
+          <h5 class="card-title">View Well Reports</h5>
+          <p class="card-text">See a list of all data reports that have been generated.</p>
+          <a href="{% url 'analysis:report_list' %}" class="btn btn-primary">View Reports</a>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <!--<img src="{% static "accountancy_bookkeeping_accounting_bookkeeper_calculator_investment_report_audit-1041551.jpg" %}" class="card-img-top" alt="calculator"> -->
+        <div class="card-body">
+          <h5 class="card-title">Create new reports</h5>
+          <p class="card-text">Automatically generate one or more reports within a specified time range.</p>
+          <a href="{% url 'analysis:create_report' %}" class="btn btn-primary">Create</a>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <!--<img src="{% static "floppy-disk-27223_960_720.png" %}" class="card-img-top" alt="disk import">-->
+        <div class="card-body">
+          <h5 class="card-title">Import raw CSV data</h5>
+          <p class="card-text">Use the custom import feature to populate data by uploading one or more CSV files.</p>
+          <a href="{% url 'analysis:upload' %}" class="btn btn-primary">Import</a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <p>To add new wells and metric types you must either create them via the import feature or use the <a href="admin">admin</a>.</p>
+    </div>
+  </div>
+{% else %}
+<div class="container">
+  <div class="jumbotron">
 <h1>Welcome, please log in</h1>
+  </div>
+</div>
+{% endif %}
 {% endblock %}
+
