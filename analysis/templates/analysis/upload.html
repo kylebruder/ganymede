@@ -1,24 +1,52 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block body_block %}
-<h3>Upload csv files to analyze</h3>
-<ul>
-  <li>The csv files must use a comma as the delimiter.</li>
-  <li>The columns must follow the following header:<br>
-  Date/Time,Date,Time,Value,Quality Code,Interploation Type,Empty,tagComments
-  <li>The first row will not be read so please make sure your files contain a header as the first row</li>
-</ul> 
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {% bootstrap_form form %}
-  <input type="submit" value="Analyze" class="btn btn-default">
-</form>
-{% if messages %}
-<h3><i>Errors:</i></h3>
-<pre>
-  {% for message in messages %}
-    {{ message }}
-  {% endfor %}
-</pre>
+<div class="container">
+  <div class="container jumbotron">
+    <h3>Import CSV Data</h3>
+  </div>
+  <div class="container">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" value="Import" class="btn btn-default">
+    </form>
+  </div>
+  <div class="container">
+    <h4>Instructions</h4>
+    <ul>
+      <li>
+        <p>The columns must follow the following header:</p>
+        <table class="table table-bordered">
+          <thead>
+            <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Date/Time</td><td>Date</td><td>Time</td><td>ValueQuality Code</td><td>Interploation Type</td><td>Empty</td><td>tagComments</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>The csv files must use a comma as the delimiter.</p>
+        <p>Example:</p>
+        <div class="container precode">
+           <pre>08/16/2012 12:00:00,08/16/2012,12:00:00,-12.08,1135,101</pre>
+        </div> 		
+      </li>
+      <li>The first row will not be read so please make sure your files contain a header as the first row</li>
+   </ul> 
+  </div>
+  {% if messages %}
+  <div class="container">
+    <h3><i>Errors:</i></h3>
+    <pre>
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    </pre>
+  </div>
+</div>
 {% endif %}
 {% endblock %}
