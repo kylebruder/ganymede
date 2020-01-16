@@ -56,7 +56,7 @@ class MetaReport(models.Model):
         return('{} - {}'.format(self.start_date, self.end_date))
 
 class WellReading(models.Model):
-    origin_file = models.CharField(max_length=256, default=None)
+    origin_file = models.CharField(max_length=256, null=True, default=None)
     well = models.ForeignKey(Well, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
