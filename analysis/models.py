@@ -34,7 +34,10 @@ class WellReport(models.Model):
     mean = models.FloatField(default=None)
     minimum= models.FloatField(default=None)
     maximum = models.FloatField(default=None)
+    first = models.FloatField(default=None)
+    first_date = models.DateTimeField(null=True)
     last = models.FloatField(default=None)
+    last_date = models.DateTimeField(null=True)
 
     def __str__(self):
         return self.title
@@ -53,7 +56,10 @@ class MetaReport(models.Model):
     csv = models.FileField(upload_to='reports/%Y/%m/%d/', default=None)
     
     def __str__(self):
-        return('{} - {}'.format(self.start_date, self.end_date))
+        return '{} - {}'.format(
+            self.start_date.strftime("%x"), 
+            self.end_date.strftime("%x"),
+        )
 
 class WellReading(models.Model):
     origin_file = models.CharField(max_length=256, null=True, default=None)

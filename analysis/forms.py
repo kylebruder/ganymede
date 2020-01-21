@@ -12,6 +12,15 @@ class UploadFileForm(forms.Form):
         widget=forms.ClearableFileInput(attrs={'multiple': True})
     )
 
+class MetaReportSelector(forms.Form):
+    start_date = forms.DateTimeField()
+    end_date = forms.DateTimeField()
+    units = forms.ModelMultipleChoiceField(
+        queryset=models.Unit.objects.all(),
+        widget=forms.CheckboxSelectMultiple(), 
+        required=True
+    )
+
 class DateRangeSelector(forms.Form):
     wells = forms.ModelMultipleChoiceField(
         queryset=models.Well.objects.all(),
