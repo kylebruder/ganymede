@@ -7,7 +7,10 @@
 # Dev databases
 *.sqlite3
 
-*/migrations/*
+# Keeping migrations as part of the codebase
+# One debate can be found here:
+# https://stackoverflow.com/questions/28035119/should-i-be-adding-the-django-migration-files-in-the-gitignore-file
+#*/migrations/*
 
 */media/*
 media/*
