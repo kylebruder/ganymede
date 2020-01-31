@@ -12,5 +12,9 @@
 # https://stackoverflow.com/questions/28035119/should-i-be-adding-the-django-migration-files-in-the-gitignore-file
 #*/migrations/*
 
+# Do not include media files
 */media/*
 media/*
+
+# Do not include the settings file. Please configure on host by host basis. settings.bak will be included for reference
+*/settings.py
