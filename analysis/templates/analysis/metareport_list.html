@@ -5,6 +5,7 @@
     <h1>Meta Reports</h1>
   </div>
   <div class="container">
+    <p>Click <a href="{% url 'analysis:create_meta_report' %}">here</a> to create a meta report.</p>
     {% if object_list %}
       <ul>
         {% for meta_report in object_list %}
@@ -13,7 +14,6 @@
       </ul>
     {% else %}
     <p>There are no meta reports yet.</p>
-    <p>Click <a href="{% url 'analysis:create_meta_report' %}">here</a> to create a meta report.</p>
     {% endif %}
   </div>  
 {% endblock %}
