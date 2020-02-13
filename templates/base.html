@@ -25,22 +25,24 @@
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'analysis:report_list' %}">Reports</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{% url 'analysis:enter_well_data' %}">Enter Data</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'analysis:create_report' %}">Create Reports</a>
+            <a class="nav-link" href="{% url 'analysis:upload' %}">Import Data</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'analysis:upload' %}">Import CSV Data</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+            <a class="nav-link" href="{% url 'analysis:report_list' %}">Reports</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'analysis:metareport_list' %}">Meta Reports</a>
+          </li>
+          {% if user.is_staff %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
           </li>
         {% else %}
           <li class="nav-item">
