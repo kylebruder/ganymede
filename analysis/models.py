@@ -246,7 +246,7 @@ class MetaReport(models.Model):
         start_date = form.cleaned_data['start_date']
         end_date = form.cleaned_data['end_date']
         dt_format = "%x"
-        report_context="All wells"
+        report_context="All data"
         report_title=report_context + " from {} to {}".format(
                 start_date.strftime(dt_format),
                 end_date.strftime(dt_format),
@@ -276,10 +276,10 @@ class MetaReport(models.Model):
             "Units",
             "Start",
             "End",
-            "First Reading",
             "First Date",
-            "Last Reading",
+            "First Reading",
             "Last Date",
+            "Last Reading",
             "Min",
             "Max",
             "Mean",
@@ -325,10 +325,10 @@ class MetaReport(models.Model):
                         str(u),
                         start_date.strftime(dt_format),
                         end_date.strftime(dt_format),
-                        first,
                         first_date.strftime(dt_format),
-                        last,
+                        first,
                         last_date.strftime(dt_format),
+                        last,
                         minimum,
                         maximum,
                         mean,

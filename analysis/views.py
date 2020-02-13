@@ -73,6 +73,7 @@ class CreateMetaReport(LoginRequiredMixin, FormView):
 class MetaReportListView(LoginRequiredMixin, ListView):
     model = MetaReport
     paginate_by = 100
+    ordering = ['-creation_date']
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
@@ -104,6 +105,7 @@ class CreateWellReport(LoginRequiredMixin, FormView):
 class WellReportListView(LoginRequiredMixin, ListView):
     model = WellReport
     paginate_by = 100
+    ordering = ['-creation_date']
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
