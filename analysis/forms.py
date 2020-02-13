@@ -9,8 +9,12 @@ from . import models
 
 class UploadFileForm(forms.Form):
     file_field = forms.FileField(
-        widget=forms.ClearableFileInput(attrs={'multiple': True})
+        widget=forms.ClearableFileInput(attrs={
+            'multiple': True,
+        }),
+        label="",
     )
+    file_field.widget.attrs.update({'class': 'btn-dark'})
 
 class MetaReportSelector(forms.Form):
     start_date = forms.DateTimeField()
