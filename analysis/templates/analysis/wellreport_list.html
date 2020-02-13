@@ -5,15 +5,15 @@
     <h1>Well Reports</h1>
   </div>
   <div class="container">
+    <p>Click <a href="{% url 'analysis:create_report' %}">here</a> to create reports</p>
     {% if object_list %}
-      <ul>
+      <ul class="list-group">
         {% for wellreport in object_list %}
-          <li><a href="{{ wellreport.get_absolute_url }}">{{ wellreport.title }}</a></li>
+          <li class="list-group-item"><a href="{{ wellreport.get_absolute_url }}">{{ wellreport.title }}</a></li>
         {% endfor %}
       </ul>
     {% else %}
     <p>There are no reports yet.</p>
-    <p>Click <a href="{% url 'analysis:create_report' %}">here</a> to create reports</p>
     {% endif %}
   </div>  
 {% endblock %}
