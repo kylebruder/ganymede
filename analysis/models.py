@@ -211,6 +211,8 @@ class WellReport(models.Model):
                     # Create the path where the graph will live
                     dti = pd.DatetimeIndex(dates)
                     df = pd.Series(values, index=dti)
+                    # Sort the dataframe bay date
+                    df = df.sort_index()
                     print(dti.freq)
     
                     dest_dir = os.path.join(
