@@ -52,6 +52,16 @@
       </ul>
     </div>
   </nav>
+  {% if messages %}
+    <div class="jumbotron">
+      <p class="lead">INFORMATION:</p>
+      <pre>
+        {% for message in messages %}
+          {{ message }}
+        {% endfor %}
+      </pre>
+    </div>
+  {% endif %}
   <div class="container">
     {% block body_block %}
     <!-- Anything outside of this will be inhereited if you extend! -->

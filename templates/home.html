@@ -16,9 +16,17 @@
         </div>
       </div>
       <div class="card" style="width: 18rem;">
+        <!--<img src="{% static "floppy-disk-27223_960_720.png" %}" class="card-img-top" alt="disk import">-->
+        <div class="card-body">
+          <h5 class="card-title">Import Raw Data</h5>
+          <p class="card-text">Use the custom import feature to populate data by uploading one or more CSV files.</p>
+          <a href="{% url 'analysis:upload' %}" class="btn btn-primary">Import</a>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
         <!--<img src="{% static "2d14aca81666a470a529694a66c8-1455413.jpg" %}" class="card-img-top" alt="making a report">-->
         <div class="card-body">
-          <h5 class="card-title">Well Reports</h5>
+          <h5 class="card-title">View Well Reports</h5>
           <p class="card-text">See a list of all data reports that have been generated.</p>
           <a href="{% url 'analysis:report_list' %}" class="btn btn-primary">View Reports</a>
         </div>
@@ -27,16 +35,8 @@
         <!--<img src="{% static "accountancy_bookkeeping_accounting_bookkeeper_calculator_investment_report_audit-1041551.jpg" %}" class="card-img-top" alt="calculator"> -->
         <div class="card-body">
           <h5 class="card-title">Create Reports</h5>
-          <p class="card-text">Automatically generate one or more reports within a specified time range.</p>
+          <p class="card-text">Generate multiple reports within a specified time range.</p>
           <a href="{% url 'analysis:create_report' %}" class="btn btn-primary">Create</a>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem;">
-        <!--<img src="{% static "floppy-disk-27223_960_720.png" %}" class="card-img-top" alt="disk import">-->
-        <div class="card-body">
-          <h5 class="card-title">Import Raw Data</h5>
-          <p class="card-text">Use the custom import feature to populate data by uploading one or more CSV files.</p>
-          <a href="{% url 'analysis:upload' %}" class="btn btn-primary">Import</a>
         </div>
       </div>
       <div class="card" style="width: 18rem;">

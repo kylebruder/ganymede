@@ -7,12 +7,4 @@
   {% bootstrap_form form %}
   <input type="submit" value="Analyze" class="btn btn-default">
 </form>
-{% if messages %}
-<h3><i>Errors:</i></h3>
-<pre>
-  {% for message in messages %}
-    {{ message }}
-  {% endfor %}
-</pre>
-{% endif %}
 {% endblock %}

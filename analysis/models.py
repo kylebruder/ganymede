@@ -47,6 +47,7 @@ class WellReport(models.Model):
     first_date = models.DateTimeField(null=True)
     last = models.FloatField(default=None)
     last_date = models.DateTimeField(null=True)
+    total_readings = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -62,7 +63,8 @@ class WellReport(models.Model):
         units='units',
         sma1=20,
         sma2=60,
-        title='Untitled'
+        title='Untitled',
+        total_values=0,
         ):
         '''
         A helper function to make a time series graph with two moving averages.
@@ -73,26 +75,30 @@ class WellReport(models.Model):
         sma1 -- the number of periods for the first moving average
         sma2 -- the number of periods for the second moving average
         title -- the title of the graph
+        total_values -- the total amount of values; used to determine
+            whether or not to display moving averages
         '''
     
     
         plt.plot(df, label=units)
-        plt.plot(
-            df.rolling(
-                sma1,
-                min_periods=1,
-                center=True
-            ).mean(),
-            label='{} value SMA'.format(sma1)
-        )
-        plt.plot(
-            df.rolling(
-                sma2,
-                min_periods=5,
-                center=True
-            ).mean(),
-            label='{} value SMA'.format(sma2)
-        )
+        if total_values >= sma1:
+            plt.plot(
+                df.rolling(
+                    sma1,
+                    min_periods=1,
+                    center=True
+                ).mean(),
+                label='{} value SMA'.format(sma1)
+            )
+        if total_values >= sma2:
+            plt.plot(
+                df.rolling(
+                    sma2,
+                    min_periods=1,
+                    center=True
+                ).mean(),
+                label='{} value SMA'.format(sma2)
+            )
         plt.hlines(df.mean(), df.index[0], df.index[-1], linestyle='--', label='mean')
         plt.xlabel("Date")
         plt.ylabel(units)
@@ -112,6 +118,7 @@ class WellReport(models.Model):
         start_date - an entry from a DateTimeField form field
         end_date - an entry from a DateTimeField form field
         '''
+        dt_format = "%x" # Set datetime format here
         # Get the wells specified in the form data
         wells = form.cleaned_data['wells']
         units = form.cleaned_data['units']
@@ -132,6 +139,18 @@ class WellReport(models.Model):
                     date__range=(start_date, end_date),
                     unit=u
                 )
+                # Alert the user
+                if not matched_readings:
+                    messages.info(
+                        request,
+                        '{}, {} : No readings were matched between {} and {}.'.format(
+                            well,
+                            unit,
+                            start_date.strftime(dt_format),
+                            end_date.strftime(dt_format),
+                        )
+                    )
+
                 # Prepare date for MatPlot and NumPy
                 values = []
                 dates = []
@@ -146,7 +165,7 @@ class WellReport(models.Model):
                     pass
                 for reading in matched_readings:
                     values.append(reading.value)
-                    dates.append(reading.date.strftime("%x"))
+                    dates.append(reading.date.strftime(dt_format))
                 if len(values) == len(dates):
                     #for i in range(len(values)):
                     #    print('{} :{}'.format(values[i], dates[i]))
@@ -160,8 +179,8 @@ class WellReport(models.Model):
                     maximum = max(values)
                     first = values[0]
                     last = values[-1]
+                    total_readings = len(values)
                     # Create a WellReport model instance for each file
-                    dt_format = "%x"
                     report_title='{} {} in {}'.format(
                         w,
                         u.measurement_type.title(),
@@ -186,6 +205,7 @@ class WellReport(models.Model):
                         first_date=first_date,
                         last=last,
                         last_date=last_date,
+                        total_readings=total_readings,
                     )
                     # Create the graph
                     # Create the path where the graph will live
@@ -204,7 +224,15 @@ class WellReport(models.Model):
     
                     dest_path = dest_dir+str(report.pk)+".png"
     
-                    plt = self.make_double_sma_time_fig(self, df, u.name, 5, 10, report_title)
+                    plt = self.make_double_sma_time_fig(
+                        self, 
+                        df, 
+                        u.name, 
+                        20, 
+                        60, 
+                        report_title, 
+                        total_readings
+                    )
                     plt.savefig(dest_path)
                     plt.close()
     

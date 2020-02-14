@@ -26,11 +26,11 @@
         <p>The columns must follow the following header:</p>
         <table class="table table-bordered">
           <thead>
-            <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th>
+            <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th>
           </thead>
           <tbody>
             <tr>
-              <td>Date/Time</td><td>Date</td><td>Time</td><td>ValueQuality Code</td><td>Interploation Type</td><td>Empty</td><td>tagComments</td>
+              <td>Date/Time</td><td>Date</td><td>Time</td><td>Value</td><td>Quality Code</td><td>Interploation Type</td><td>Empty</td><td>tagComments</td>
             </tr>
           </tbody>
         </table>
@@ -47,15 +47,4 @@
   </div>
   </div>
   </div>
-  {% if messages %}
-  <div class="container">
-    <h3><i>Errors:</i></h3>
-    <pre>
-    {% for message in messages %}
-      {{ message }}
-    {% endfor %}
-    </pre>
-  </div>
-</div>
-{% endif %}
 {% endblock %}
