@@ -1,4 +1,5 @@
 # ganymede
+<<<<<<< HEAD
 
 Import well data into the app and create analysis reports and meta-reports based on user criteria.
 
@@ -24,3 +25,7 @@ Set the owner and permissions to root 655
 sudo chown root:root /etc/systemd/system/gunicorn.service
 Start and enable the gunicorn service
 sudo systemctl start gunicorn && sudo systemctl enable gunicorn
+=======
+This is a project for Nick Byler.
+Import well data into the app and create analysis reports and meta-reports based on user criteria
+>>>>>>> 43b2905ae18cde5b888a1ba045f014181aa822ee
