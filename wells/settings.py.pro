@@ -30,7 +30,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'testserver',
-    'wells.kbruder.info',
 ]
 
 

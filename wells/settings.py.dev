@@ -27,10 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'testserver',
-    '192.168.0.159',
-    '192.168.154.112', 
-    '10.173.10.67', 
-    '10.0.0.28',
 ]
 
 
@@ -85,9 +81,9 @@ WSGI_APPLICATION = 'wells.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'wells2',
-        'USER': 'wells',
-        'PASSWORD': 'Pt0s2ep!w3Te',
+        'NAME': '<DATABASE>',
+        'USER': '<USER>',
+        'PASSWORD': '<PASSWORD>',
         'HOST': 'localhost',
         'PORT': '5432'
     }
